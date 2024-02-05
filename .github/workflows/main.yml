@@ -15,14 +15,10 @@ jobs:
       - name: brew setup
         run: |
           set -x
-          brew install colima docker
-          brew services run colima
-          sleep 30
-          brew services info colima
-          sleep 30
+          brew install --cask docker
+          sleep 10
           docker context ls
           docker context use default
-          sleep 5
           docker version
           docker run --rm hello-world
           brew tap sdkman/tap
