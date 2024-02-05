@@ -16,6 +16,8 @@ jobs:
         run: |
           set -x
           brew install --cask docker
+          ls -latr /Applications
+          open -g -j -a /Applications/Docker.app
           sleep 10
           docker context ls
           docker context use default
