@@ -16,9 +16,12 @@ jobs:
         run: |
           set -x
           brew install colima docker
-          brew services start colima
-          export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+          brew services run colima
+          sleep 30
+          brew services info colima
+          sleep 30
           docker context ls
+          docker context use default
           sleep 5
           docker version
           docker run --rm hello-world
