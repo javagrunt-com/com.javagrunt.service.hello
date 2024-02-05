@@ -21,6 +21,7 @@ jobs:
           sleep 10
           docker context ls
           docker version
+          docker info
           docker run --rm hello-world
           brew tap sdkman/tap
           brew install sdkman-cli
