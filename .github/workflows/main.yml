@@ -20,15 +20,10 @@ jobs:
         with:
           username: dashaun
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Install JDK
-        uses: sfesenko/setup-sdkman@v1
+      - uses: actions/setup-java@v2
         with:
-          deps: java:23.1.2.r21-nik
-      - run: |
-          source ~/.sdkman/bin/sdkman-init.sh
-          sdk version
-          java -version
-          sdk use java 23.1.2.r21-nik
+          distribution: 'liberica' # See 'Supported distributions' for available options
+          java-version: '21'
       - name: Checkout master
         uses: actions/checkout@v3
         with:
