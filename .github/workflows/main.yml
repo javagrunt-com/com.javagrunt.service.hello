@@ -15,8 +15,8 @@ jobs:
       - name: brew setup
         run: |
           set -x
-          brew install --cask docker
-          open -g -j -a /Applications/Docker.app
+          brew install colima docker
+          colima start
           docker version
           docker run --rm hello-world
           brew tap sdkman/tap
