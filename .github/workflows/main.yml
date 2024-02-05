@@ -18,6 +18,8 @@ jobs:
           brew install colima docker
           brew services start colima
           export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+          docker context ls
+          sleep 5
           docker version
           docker run --rm hello-world
           brew tap sdkman/tap
