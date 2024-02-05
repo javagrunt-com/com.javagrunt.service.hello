@@ -17,16 +17,16 @@ jobs:
           brew update
           brew upgrade
           brew install docker
+          brew tap sdkman/tap
+          brew install sdkman-cli
+          sdk install java 23.1.2.r21-nik
+          sdk use java 23.1.2.r21-nik
       #Login to DockerHub
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
           username: dashaun
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Install JDK
-        uses: sfesenko/setup-sdkman@v1
-        with:
-          deps: java:23.1.2.r21-nik
       - name: Checkout Main
         uses: actions/checkout@v3
         with:
