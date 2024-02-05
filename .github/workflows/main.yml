@@ -6,7 +6,7 @@ on:
       - "v*"
 
 env:
-  IMAGE_NAME: dashaun/${GITHUB_REPOSITORY#*/}
+  IMAGE_NAME: dashaun/com.javagrunt.service.hello
 
 jobs:
   build:
@@ -20,10 +20,10 @@ jobs:
         with:
           username: dashaun
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: actions/setup-java@v2
+      - name: Install JDK
+        uses: sfesenko/setup-sdkman@v1
         with:
-          distribution: 'liberica' # See 'Supported distributions' for available options
-          java-version: '17'
+          deps: java:23.1.2.r21-nik
       - name: Checkout master
         uses: actions/checkout@v3
         with:
