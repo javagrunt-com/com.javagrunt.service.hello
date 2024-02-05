@@ -14,8 +14,10 @@ jobs:
     steps:
       - name: brew setup
         run: |
+          set -x
           brew install --cask docker
-          open -g -j -a Docker
+          docker version
+          docker run --rm hello-world
           brew tap sdkman/tap
           brew install sdkman-cli
           export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
@@ -24,10 +26,6 @@ jobs:
           sdk version
           sdk install java 23.1.2.r21-nik
           sdk use java 23.1.2.r21-nik
-      - run: |
-          set -x
-          docker version    
-          docker run --rm hello-world
       #Login to DockerHub
       - name: Login to DockerHub
         uses: docker/login-action@v2
