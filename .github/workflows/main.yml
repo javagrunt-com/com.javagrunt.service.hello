@@ -16,6 +16,8 @@ jobs:
         run: |
           brew update
           brew upgrade
+          brew install docker
+          open -g -j -a Docker.app
           brew tap sdkman/tap
           brew install sdkman-cli
           export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
@@ -24,8 +26,6 @@ jobs:
           sdk version
           sdk install java 23.1.2.r21-nik
           sdk use java 23.1.2.r21-nik
-      - uses: docker-practice/actions-setup-docker@master
-        timeout-minutes: 12
       - run: |
           set -x
           docker version    
