@@ -19,6 +19,10 @@ jobs:
           brew install docker
           brew tap sdkman/tap
           brew install sdkman-cli
+          export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+          [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]
+          source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+          sdk version
           sdk install java 23.1.2.r21-nik
           sdk use java 23.1.2.r21-nik
       #Login to DockerHub
