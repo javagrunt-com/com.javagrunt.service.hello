@@ -28,7 +28,7 @@ jobs:
           source ~/.sdkman/bin/sdkman-init.sh
           sdk version
           java -version
-          sdk use java 32.1.2.r21-nik
+          sdk use java 23.1.2.r21-nik
       - name: Checkout master
         uses: actions/checkout@v3
         with:
