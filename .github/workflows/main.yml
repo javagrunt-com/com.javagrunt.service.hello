@@ -14,10 +14,8 @@ jobs:
     steps:
       - name: brew setup
         run: |
-          brew update
-          brew upgrade
           brew install docker
-          open -g -j -a Docker.app
+          open -g -j -a Docker
           brew tap sdkman/tap
           brew install sdkman-cli
           export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
