@@ -1,4 +1,4 @@
-name: Native-AMD64
+name: multi-arch-build
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
         run: |
           set -x
           brew install colima docker
-          colima start
+          brew services start colima
           docker version
           docker run --rm hello-world
           brew tap sdkman/tap
