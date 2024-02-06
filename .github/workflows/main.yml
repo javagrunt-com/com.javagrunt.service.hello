@@ -19,6 +19,7 @@ jobs:
           ls -latr /Applications
           open -g -j -a /Applications/Docker.app
           sleep 10
+          export DOCKER_HOST=unix:///Users/runner/.docker/run/docker.sock
           docker context ls
           docker version
           docker info
