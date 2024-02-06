@@ -9,45 +9,6 @@ env:
   IMAGE_NAME: dashaun/com.javagrunt.service.hello
 
 jobs:
-  build-mac:
-    runs-on: macos-13
-    steps:
-      - name: brew setup
-        run: |
-          set -x
-          brew install --cask docker
-          ls -latr /Applications
-          open -g -j -a /Applications/Docker.app
-          sleep 10
-          export DOCKER_HOST=unix:///Users/runner/.docker/run/docker.sock
-          docker context ls
-          docker version
-          docker info
-          docker run --rm hello-world
-          brew tap sdkman/tap
-          brew install sdkman-cli
-          export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-          [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]
-          source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-          sdk version
-          sdk install java 23.1.2.r21-nik
-          sdk use java 23.1.2.r21-nik
-      #Login to DockerHub
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: dashaun
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Checkout Main
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-      #Build Image
-      - name: Build Image
-        run: ./mvnw -Pnative spring-boot:build-image
-      #Deploy the image to the Docker registry
-      - name: Push Images to Docker Registry
-        run: docker push -a $IMAGE_NAME
   build-ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -72,7 +33,7 @@ jobs:
       - name: Push Images to Docker Registry
         run: docker push -a $IMAGE_NAME
   manifest:
-    needs: [build-mac, build-ubuntu]
+    needs: [build-ubuntu]
     runs-on: ubuntu-latest
     steps:
       - name: Login to DockerHub
